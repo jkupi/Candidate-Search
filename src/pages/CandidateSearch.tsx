@@ -3,9 +3,11 @@ import { searchGithub, searchGithubUser } from "../api/API";
 
 type Status = "loading" | "ready" | "noCandidates";
 
-const CandidateSearch: React.FC = () => {
+const CandidateSearch = () => {
   const [candidateQueue, setCandidateQueue] = useState<Candidate[]>([]);
-  const [currentCandidate, setCurrentCandidate] = useState<Candidate | null>(null);
+  const [currentCandidate, setCurrentCandidate] = useState<Candidate | null>(
+    null
+  );
   const [status, setStatus] = useState<Status>("loading");
 
   useEffect(() => {
@@ -78,10 +80,7 @@ const CandidateSearch: React.FC = () => {
       {status === "ready" && currentCandidate && (
         <div>
           <h2>{currentCandidate.login}</h2>
-          <img
-            src={currentCandidate.avatar_url}
-            alt={currentCandidate.login}
-          />
+          <img src={currentCandidate.avatar_url} alt={currentCandidate.login} />
           <p>Location: {currentCandidate.location || "N/A"}</p>
           <p>Email: {currentCandidate.email || "N/A"}</p>
           <p>Company: {currentCandidate.company || "N/A"}</p>
