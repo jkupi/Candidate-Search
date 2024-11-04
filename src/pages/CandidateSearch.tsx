@@ -29,14 +29,14 @@ const CandidateSearch = () => {
   const getCandidateDetails = async (username: string) => {
     try {
       const candidateDetails = await searchGithubUser(username);
-      // error finding username
-      if (candidateDetails && candidateDetails.message === "Not Found") {
-        nextCandidate();
-      } else if (candidateDetails && candidateDetails.id) {
+      // console.log(candidateDetails);
+      
+      if (candidateDetails && candidateDetails.id) {
         setCurrentCandidate(candidateDetails);
         setStatus("ready");
       } else {
         // error finding username
+        // console.log("skipping candidate => error 404");
         nextCandidate();
       }
     } catch {
@@ -45,14 +45,22 @@ const CandidateSearch = () => {
     }
   };
 
-  const saveCandidate = () => {
+  const saveCandidate = async () => {
     if (candidateQueue[0]) {
-      const savedCandidates = JSON.parse(
-        localStorage.getItem("savedCandidates") || "[]"
-      );
-      savedCandidates.push(candidateQueue[0]);
-      localStorage.setItem("savedCandidates", JSON.stringify(savedCandidates));
-      nextCandidate();
+      const candidateDetails = await searchGithubUser(candidateQueue[0].login);
+
+      if (candidateDetails) {
+        const savedCandidates = JSON.parse(
+          localStorage.getItem("savedCandidates") || "[]"
+        );
+
+        savedCandidates.push(candidateDetails);
+        localStorage.setItem(
+          "savedCandidates",
+          JSON.stringify(savedCandidates)
+        );
+        nextCandidate();
+      }
     }
   };
 
