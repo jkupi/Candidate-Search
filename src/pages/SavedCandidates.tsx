@@ -10,6 +10,12 @@ const SavedCandidates = () => {
     setSavedCandidates(candidatesArray);
   }, []);
 
+  const rejectCandidate = (username: string) => {
+    const updatedCandidates = savedCandidates.filter(candidate => candidate.login !== username);
+    setSavedCandidates(updatedCandidates);
+    localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
+  }
+
   return (
     <div>
       <h2>Saved Candidates</h2>
@@ -26,6 +32,7 @@ const SavedCandidates = () => {
               <th>Email</th>
               <th>Company</th>
               <th>GitHub Profile</th>
+              <th>Reject</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +46,7 @@ const SavedCandidates = () => {
                     height={50}
                   />
                 </td>
-                <td>{candidate.login}</td>
+                <td>{candidate.name || "N/A"}</td>
                 <td>{candidate.login}</td>
                 <td>{candidate.location || "N/A"}</td>
                 <td>{candidate.email || "N/A"}</td>
@@ -48,6 +55,9 @@ const SavedCandidates = () => {
                   <a href={candidate.html_url} target="_blank">
                     View Profile
                   </a>
+                </td>
+                <td>
+                  <button onClick={() => rejectCandidate(candidate.login)}>-</button>
                 </td>
               </tr>
             ))}

@@ -8,4 +8,5 @@ interface Candidate {
     html_url?: string,
     company?: string,
     bio?: string,
+    name?: string,
 }
