@@ -82,22 +82,22 @@ const CandidateSearch = () => {
   };
 
   return (
-    <div>
+    <div className="candidateContainer">
       {status === "loading" && <p>Loading...</p>}
       {status === "noCandidates" && <p>No more candidates available</p>}
       {status === "ready" && currentCandidate && (
-        <div>
+        <div className="candidateCard">
           <h2>{currentCandidate.login}</h2>
-          <img src={currentCandidate.avatar_url} alt={currentCandidate.login} />
-          <p>Location: {currentCandidate.location || "N/A"}</p>
-          <p>Email: {currentCandidate.email || "N/A"}</p>
-          <p>Company: {currentCandidate.company || "N/A"}</p>
-          <p>Bio: {currentCandidate.bio || "N/A"}</p>
+          <img className="candidateAvatar" src={currentCandidate.avatar_url} alt={currentCandidate.login} />
+          <p><strong>Location:</strong> {currentCandidate.location || "N/A"}</p>
+          <p><strong>Email:</strong> {currentCandidate.email || "N/A"}</p>
+          <p><strong>Company:</strong> {currentCandidate.company || "N/A"}</p>
+          <p><strong>Bio:</strong> {currentCandidate.bio || "N/A"}</p>
           <a href={currentCandidate.html_url} target="_blank">
             Profile Link
           </a>
-          <button onClick={saveCandidate}>+</button>
-          <button onClick={skipCandidate}>-</button>
+          <button className='saveBtn' onClick={saveCandidate}>+</button>
+          <button className='skipBtn' onClick={skipCandidate}>-</button>
         </div>
       )}
     </div>

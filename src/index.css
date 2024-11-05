@@ -118,3 +118,74 @@ tbody tr:nth-child(odd) {
   width: 80vw;
   table-layout: fixed;
 }
+
+th {
+  padding: 10px;
+  border: 1px solid;
+  text-align: left;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid;
+  text-align: left;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  background-color: #213547;
+  color: white;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav li {
+  display: inline;
+}
+
+.candidateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.candidateCard {
+  box-shadow: 20px 40px 8px rgba(5, 5, 5, 0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+}
+
+.candidateAvatar {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px 0;
+}
+
+.saveBtn, .skipBtn {
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: white;
+}
+
+.saveBtn {
+  background-color: #4CAF50;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.skipBtn {
+  background-color: #b80909;
+}
